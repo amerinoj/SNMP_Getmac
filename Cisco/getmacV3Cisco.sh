@@ -88,28 +88,6 @@ echo -e "nSNMP Queries Completed"
 echo "[*]Count mac per vlan...." 
 awk -F, 'NR>1{arr[$3","$4]++}END{for (a in arr) print  a","arr[a]}' $REPORT.mac  >> $REPORT.csv
 
-/*
-Vlans=$(sort -t,  -k4,1 -n -u -b $REPORT.mac  | cut -d ","  -f 3,4 --output-delimiter=" "  |  sort   -k2 -n -u -b)
-Vlan_count=$(awk -F, '{arr[$4]++;next } END{for (a in arr)   print a,arr[a] }' $REPORT.mac ) 
-
-while IFS=$'\n' read -r Line; do
-			array_Vlan_id=($Line);
-			Id=${array_Vlan_id[0]};
-			Count=${array_Vlan_id[1]};
-			
-			while IFS=$'\n' read -r Vlan; do
-				array_Vlan=($Vlan);
-				Vlan_Name=${array_Vlan[0]};
-				Vlanid=${array_Vlan[1]};
-				
-					if [[ "$Vlanid" == "$Id" ]] ; then
-						break 1
-					fi
-				
-			done <<< "$Vlans"
-			echo -e "$Vlan_Name,$Id,$Count"  >> $REPORT.csv
-done <<< "$Vlan_count"
-*/
 
 echo -e "Count Completed"
 
